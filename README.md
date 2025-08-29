@@ -1,128 +1,135 @@
-# Aletheia
+# Turborepo starter
 
-> ⚠️ Work in progress — Nothing is published yet. Use at your own risk.  
-> 📝 This README is temporary and subject to change.
+This Turborepo starter is maintained by the Turborepo core team.
 
-Aletheia is a **lightweight prompt management and testing platform** built with React + Vite frontend and Bun + ElysiaJS backend. Originally conceived as a simple yet powerful alternative to complex prompt engineering tools, Aletheia focuses on core prompt workflows with automated agents as helpful utilities for enhanced productivity and evaluation tracking.
+## Using this example
 
----
+Run the following command:
 
-## Origin & Philosophy
-
-- **Origin**: Built from the ground up to streamline prompt engineering workflows and testing.
-- **Key architectural principles**:
-  - **Prompt-First Design**: Core focus on prompt creation, versioning, and testing workflows.
-  - **Lightweight & Fast**: Bun + ElysiaJS backend for ultra-fast API responses.
-  - **Simple Setup**: SQLite for easy development, scalable to PostgreSQL for production.
-  - **Automated Helpers**: AI agents as utilities for enhanced productivity and automation.
-
----
-
-## Features
-
-- **Prompt Management**: Create, edit, version, and organize prompts with full CRUD operations.
-- **Interactive Playground**: Test prompts with different inputs in real-time through a reactive UI.
-- **Automated Agents**: Helpful utilities for RAG, content generation, notifications, and workflow automation.
-- **Evaluation & Logging**: Track performance metrics and interaction logs for continuous improvement.
-- **Developer-Friendly**: Clean API design with full TypeScript support and minimal setup.
-
----
-
-## Tech Stack
-
-- **Frontend**: React + Vite for blazing-fast development and build times
-- **Backend**: Bun + ElysiaJS for ultra-lightweight, high-performance API
-- **Database**: SQLite + Prisma (easily scalable to PostgreSQL)
-- **TypeScript**: Full type safety across the entire stack
-
----
-
-## Installation
-
-> Currently not published to NPM. Clone the repo and use locally:
-
-```bash
-git clone https://github.com/Leopc1977/Aletheia.git
-cd Aletheia
-bun install
+```sh
+npx create-turbo@latest
 ```
 
----
+## What's inside?
 
-## Quick Start 
+This Turborepo includes the following packages/apps:
 
-```bash
-# Start the backend
-cd backend
-bun run dev
+### Apps and Packages
 
-# Start the frontend (in another terminal)
-cd frontend
-bun run dev
+- `docs`: a [Next.js](https://nextjs.org/) app
+- `web`: another [Next.js](https://nextjs.org/) app
+- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
+- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+
+Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+
+### Utilities
+
+This Turborepo has some additional tools already setup for you:
+
+- [TypeScript](https://www.typescriptlang.org/) for static type checking
+- [ESLint](https://eslint.org/) for code linting
+- [Prettier](https://prettier.io) for code formatting
+
+### Build
+
+To build all apps and packages, run the following command:
+
+```
+cd my-turborepo
+
+# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+turbo build
+
+# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+npx turbo build
+yarn dlx turbo build
+pnpm exec turbo build
 ```
 
-Navigate to `http://localhost:5173` to access the Aletheia interface.
-
----
-
-## Project Structure
+You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
 
 ```
-Aletheia/
-├── frontend/          # React + Vite
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── App.jsx
-│   │   └── main.jsx
-├── backend/           # Bun + ElysiaJS
-│   ├── server.ts
-│   ├── routes/
-│   │   ├── prompts.ts
-│   │   └── agents.ts
-│   └── services/
-│       └── agentLogic.ts
-└── prisma/           # Database + ORM
-    ├── schema.prisma
-    └── migrations/
+# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+turbo build --filter=docs
+
+# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+npx turbo build --filter=docs
+yarn exec turbo build --filter=docs
+pnpm exec turbo build --filter=docs
 ```
 
----
+### Develop
 
-## Examples
+To develop all apps and packages, run the following command:
 
-- **Prompt Playground**: Interactive testing environment for prompt optimization and iteration
-- **Helper Agents**: Automated utilities for content processing and workflow enhancement
-- **Evaluation Dashboard**: Performance tracking and analytics for prompt effectiveness
-- **API Integration**: Easy integration with existing applications through clean REST endpoints
+```
+cd my-turborepo
 
----
+# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+turbo dev
 
-## Contributing
+# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+npx turbo dev
+yarn exec turbo dev
+pnpm exec turbo dev
+```
 
-Pull requests are welcome! Feel free to open issues for bugs, feature requests, or questions. We especially welcome contributions for:
+You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
 
-- New prompt testing and evaluation features
-- Additional helper agents and automation utilities
-- UI/UX improvements for the playground experience
-- Performance optimizations and developer experience enhancements
+```
+# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+turbo dev --filter=web
 
----
+# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+npx turbo dev --filter=web
+yarn exec turbo dev --filter=web
+pnpm exec turbo dev --filter=web
+```
 
-## Authors
+### Remote Caching
 
-- **Leopc1977* – *Initial work* – [GitHub](https://github.com/Leopc1977) – [Discord](https://discordapp.com/users/399631094514843669)
+> [!TIP]
+> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
 
----
+Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
 
-## Acknowledgments
+By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
 
-- Inspired by the growing need for better prompt engineering tools
-- Thanks to the Bun and ElysiaJS communities for creating such performant tools
-- Special appreciation for the AI development community's feedback and contributions
+```
+cd my-turborepo
 
----
+# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+turbo login
 
-## License
+# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+npx turbo login
+yarn exec turbo login
+pnpm exec turbo login
+```
 
-This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE.md) file for details
+This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+
+Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+
+```
+# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+turbo link
+
+# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+npx turbo link
+yarn exec turbo link
+pnpm exec turbo link
+```
+
+## Useful Links
+
+Learn more about the power of Turborepo:
+
+- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
+- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
+- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
+- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
+- [Configuration Options](https://turborepo.com/docs/reference/configuration)
+- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
