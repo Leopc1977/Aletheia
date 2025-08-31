@@ -6,24 +6,27 @@ new Elysia()
         origin: '*'
     }))
     .get("/ping", () => JSON.stringify({a:"pong"}))
-    .get("/test", async () => {
-    
+    .get("/test", async (req) => {
+        const url = new URL(req.request.url);
+        const model = url.searchParams.get('model');
+        const prompt = url.searchParams.get('prompt');
+      
         // Appel direct au serveur DeepSeek
         const res = await fetch("http://127.0.0.1:8081/v1/chat/completions", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             temperature: 1,
-            model: 'deepseek-llm-7b-chat.Q4_K_M',
+            model: model,
             messages: [
               { role: "system", content: "You are a helpful assistant." },
-              { role:"user", content: "date release iron man film ?" }
+              { role:"user", content: prompt }
             ]
           })
         });
 
         const data = await res.json();
-        console.log(data)
+
         return data
       })
     .listen(
